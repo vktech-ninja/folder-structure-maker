@@ -1,0 +1,107 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header.header {
+  padding: 12px;
+  background: black;
+  color: white;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.main-content {
+  padding: 24px;
+}
+
+button {
+  background: black;
+  padding: 12px 20px;
+  color: white;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover,
+  &:active,
+  &:focus {
+    outline: 2px solid black;
+    border: 1px solid white;
+  }
+}
+
+.node-list {
+  margin: 24px 0;
+}
+
+.node {
+  display: flex;
+  padding: 8px;
+  margin: 8px;
+  border-radius: 4px;
+  width: fit-content;
+  align-items: center;
+
+  img.icon {
+    height: 16px;
+  }
+
+  input {
+    border-color: black;
+    border-radius: 4px;
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+
+  i {
+    visibility: hidden;
+    cursor: pointer;
+  }
+
+  &:not(.no-highlight):hover {
+    outline: 2px solid black;
+
+    i {
+      visibility: visible;
+    }
+  }
+
+  &>*:not(:first-child):not(:last-child) {
+    margin: 0 4px;
+  }
+
+  &>*:first-child {
+    margin-right: 4px;
+  }
+
+  &>*:last-child {
+    margin-left: 4px;
+  }
+}
+
+.child {
+  margin-left: 32px;
+  border-left: 2px solid rgb(100, 100, 100);
+
+  .node-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .node-container:before {
+    content: "";
+    position: relative;
+    top: -0.3em;
+    height: 1em;
+    width: 12px;
+    color: white;
+    border-bottom: 2px solid rgb(100, 100, 100);
+    content: '';
+    display: inline-block;
+  }
+}

@@ -1,0 +1,34 @@
+<div class='node-container'>
+  <div class='node' [class.no-highlight]='node?.type==="unset"'>
+
+    <ng-template [ngIf]='node?.type === "unset"'>
+      <button (click)='updateNodeType("folder")'>Folder</button>
+      <button (click)='updateNodeType("file")'>File</button>
+    </ng-template>
+
+    <ng-template [ngIf]='["file", "folder"].includes(node.type!)'>
+
+      <ng-template [ngIf]='node?.name' [ngIfElse]='inputRef'>
+        <img class='icon'
+          [src]="node?.type === 'file' ? 'assets/images/file-regular.svg' : 'assets/images/folder-open-regular.svg'">
+        <span class='name'>{{node?.name}}</span>
+        <i class="fas fa-plus-circle" (click)='addNode()' *ngIf='node?.type === "folder"'></i>
+        <i class="fas fa-trash-alt" (click)='removeNode()'></i>
+      </ng-template>
+
+      <ng-template #inputRef>
+        <img class='icon'
+          [src]="node?.type === 'file' ? 'assets/images/file-regular.svg' : 'assets/images/folder-open-regular.svg'">
+        <input #input />
+        <i class="fas fa-plus-square fa-lg" (click)='updateNodeName(input.value)'></i>
+        <i class="far fa-window-close fa-lg" (click)='removeNode()'></i>
+      </ng-template>
+
+    </ng-template>
+
+  </div>
+</div>
+
+<div *ngIf='node?.children?.length' class="child">
+  <app-node *ngFor='let child of node?.children' [node]='child' (remove)='removeChildNode($event)'></app-node>
+</div>
